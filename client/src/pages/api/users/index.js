@@ -12,7 +12,16 @@ export default async (req,res ) => {
                 const users = await User.find({})
                 res.status(200).json({succes: true, data: users})
             } catch (error) {
-                
+                res.status(400).json({succes: false})
+            }
+            break;
+        case 'POST':
+            try {
+                const user = await User.create(req.body)
+
+                res.status(201).json({succes: true, data: user})
+            } catch (error) {
+                res.status(400).json({succes: false})
             }
 
     }
