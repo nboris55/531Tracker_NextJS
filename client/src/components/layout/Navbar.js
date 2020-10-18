@@ -2,8 +2,7 @@ import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthLinks, Logout } from './links';
 
-export default function Navbar() {
-  let loggedIn = false;
+export default function Navbar({loggedIn}) {
 
   return (
     <nav className='flex items-center justify-between bg-gray-700 p-3 h-16 nav'>

@@ -3,16 +3,22 @@ import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
 
-export default function dashboard() {
+dashboard.getInitialProps = async () => {
+  const res = await fetch('http://localhost:3000/api/users/5f8cb78196c2a34164a761d8');
+  const user = await res.json();
+  return {user: user.data}
+}
+
+export default function dashboard({user: {name}}) {
   return (
     <Fragment>
-      <Navbar />
+      <Navbar loggedIn={true}/>
       <div className='max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto text-center sm:text-left'>
         <div>
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
         </div>
         <div>
-          <h1 className='text-4xl mb-2 md:mb-4'>Welcome John Doe</h1>
+          <h1 className='text-4xl mb-2 md:mb-4'>Welcome {name}</h1>
         </div>
         <div className='text-center sm:text-left sm:space-x-3'>
           <Link href='/daily_routine'>

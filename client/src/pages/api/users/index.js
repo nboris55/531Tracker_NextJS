@@ -1,5 +1,5 @@
-import db from '../../../../middleware/db';
-import User from '../../../../models/User'
+import db from '../../../middleware/db';
+import User from '../../../models/User';
 
 db()
 
@@ -18,11 +18,14 @@ export default async (req,res ) => {
         case 'POST':
             try {
                 const user = await User.create(req.body)
-
                 res.status(201).json({succes: true, data: user})
             } catch (error) {
                 res.status(400).json({succes: false})
             }
+            break;
+        default:
+            res.status(400).json({success: false})
+            break;
 
     }
 }
