@@ -1,0 +1,26 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+  color: #fff;
+  background-color: #2d3748;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: 
+    /* top, transparent red */ linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    /* bottom, image */ url(../public/img/gym.jpg) no-repeat center center/cover;
+}
+
+.nav {
+  border-bottom: solid 1px #b2f5ea;
+}
