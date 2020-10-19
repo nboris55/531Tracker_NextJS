@@ -2,8 +2,11 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'next/router'
 
 export default function login() {
+  const router = useRouter();
+
   const formik = useFormik ({
     initialValues: {
       email: '',
@@ -14,9 +17,30 @@ export default function login() {
       password: Yup.string().min(6).max(20).required()
     }),
     onSubmit: values => {
-      console.log(JSON.stringify(values, null, 4))
+      submit(values)
     } 
   })
+
+  async function submit(values) {
+    try {
+      const res = await fetch('http://localhost:3000/api/login',{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+      const user = await res.json()
+      if (!user) {
+        res.status(401).json({success: false, message: 'Login error'})
+      } else {
+        router.push('/dashboard')
+      }
+  } catch (error) {
+    console.log(error) 
+  }
+  }
+
   return (
     <Fragment>
       <div className='max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto'>

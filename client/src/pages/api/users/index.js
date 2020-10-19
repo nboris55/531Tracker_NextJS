@@ -20,7 +20,7 @@ export default async (req,res ) => {
                 const user = await User.create(req.body)
                 res.status(201).json({succes: true, data: user})
             } catch (error) {
-                res.status(400).json({succes: false})
+                res.status(400).json({succes: false, message: error})
             }
             break;
         default:

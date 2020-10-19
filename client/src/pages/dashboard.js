@@ -4,12 +4,15 @@ import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
 
 dashboard.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/users/5f8cb78196c2a34164a761d8');
+  const res = await fetch('http://localhost:3000/api/me',{
+    method: 'GET'
+  });
   const user = await res.json();
+  console.log(user.data)
   return {user: user.data}
 }
 
-export default function dashboard({user: {name}}) {
+export default function dashboard() {
   return (
     <Fragment>
       <Navbar loggedIn={true}/>
@@ -18,7 +21,7 @@ export default function dashboard({user: {name}}) {
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
         </div>
         <div>
-          <h1 className='text-4xl mb-2 md:mb-4'>Welcome {name}</h1>
+          <h1 className='text-4xl mb-2 md:mb-4'>Welcome</h1>
         </div>
         <div className='text-center sm:text-left sm:space-x-3'>
           <Link href='/daily_routine'>
