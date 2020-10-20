@@ -2,13 +2,18 @@ import { Fragment } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
+import fetch from 'isomorphic-unfetch'
+import {NextPageContext } from 'next'
 
-dashboard.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/me',{
-    method: 'GET'
+dashboard.getInitialProps = async (ctx: NextPageContext) => {
+  const cookie = ctx.req.headers.cookie;
+
+  const res = await fetch('http://localhost:3000/api/me', {
+    headers: {
+      cookie: cookie
+    }
   });
   const user = await res.json();
-  console.log(user.data)
   return {user: user.data}
 }
 

@@ -29,7 +29,7 @@ export default async (req,res) => {
         res.status(400).json({success: false, message: 'Invalid email or password'}) 
     }
 } else {
-    res.status(400).json({success:false, message:'Only accepts GET requests'})
+    res.status(400).json({success:false, message:'Only accepts POST requests'})
 }
    
 }

@@ -32,7 +32,7 @@ export default function login() {
       })
       const user = await res.json()
       if (!user) {
-        res.status(401).json({success: false, message: 'Login error'})
+        console.log('User not found')
       } else {
         router.push('/dashboard')
       }
