@@ -20,6 +20,26 @@ const UserSchema = new mongoose.Schema({
       minlength: 6,
       select: false
     },
+    bench: {
+      type: Number,
+      minlength: 2,
+      maxlength:3,
+    },
+    squat: {
+        type: Number,
+        minlength: 2,
+        maxlength:3,
+    },
+    deadlift: {
+    type: Number,
+    minlength: 2,
+    maxlength:3,
+    }, 
+    overheadPress: {
+        type: Number,
+        minlength: 2,
+        maxlength:3,
+    },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     createdAt: {
