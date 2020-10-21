@@ -17,6 +17,5 @@ export const authenticated = (fn) => async (req, res) => {
 export default authenticated(async function getMe(req,res){
     const { email } = req.body
     const user = await User.findOne({email});
-    console.log(user)
     res.json({ success: true, data: user });
 })

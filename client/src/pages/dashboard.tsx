@@ -5,22 +5,23 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import {NextPageContext } from 'next'
 
-dashboard.getInitialProps = async (ctx: NextPageContext) => {
-  const cookie = ctx.req.headers.cookie;
+// dashboard.getInitialProps = async (ctx: NextPageContext) => {
+//   const cookie = ctx.req.headers.cookie;
 
-  const res = await fetch('http://localhost:3000/api/me', {
-    headers: {
-      cookie: cookie
-    }
-  });
-  const user = await res.json();
-  return {user: user.data}
-}
+//   const res = await fetch('http://localhost:3000/api/me', {
+//     headers: {
+//       cookie: cookie
+//     }
+//   });
+//   const user = await res.json();
+//   return {user: user.data}
+// }
 
 export default function dashboard() {
+  let loggedIn = false;
   return (
     <Fragment>
-      <Navbar loggedIn={true}/>
+      <Navbar loggedIn={loggedIn} />
       <div className='max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto text-center sm:text-left'>
         <div>
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
@@ -28,6 +29,14 @@ export default function dashboard() {
         <div>
           <h1 className='text-4xl mb-2 md:mb-4'>Welcome</h1>
         </div>
+        {!loggedIn ? <Fragment>
+          <p className='text-2xl mb-3 text-teal-200'>You have not setup a profile yet.</p>
+          <Link href='/edit_profile'>
+          <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2'>
+              Create One
+            </a>
+          </Link>
+        </Fragment> : <Fragment>
         <div className='text-center sm:text-left sm:space-x-3'>
           <Link href='/daily_routine'>
             <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2'>
@@ -45,10 +54,12 @@ export default function dashboard() {
             </a>
           </Link>
         </div>
-        <div className=''>
-          <h1 className='text-3xl mt-10 mb-2'>Week at a glance</h1>
+          <div>
+           <h1 className='text-3xl mt-10 mb-2'>Week at a glance</h1>
         </div>
         <GlanceTable />
+        </Fragment> }
+        
       </div> 
     </Fragment>
   );
