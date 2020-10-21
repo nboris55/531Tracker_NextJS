@@ -18,11 +18,29 @@ export default function editProfile() {
       deadlift: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
     }),
     onSubmit: values => {
-      console.log(JSON.stringify(values, null, 4))
+     submit(values)
     }
   })
 
-
+  async function submit(values) {
+    try {
+      const res = await fetch('http://localhost:3000/api/profile',{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+      })
+      const user = await res.json()
+      if (!user) {
+        console.log('User not found')
+      } else {
+        router.push('/dashboard')
+      }
+  } catch (error) {
+    console.log(error) 
+  }
+  }
   
 return(<div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto">
     <form className="bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10" onSubmit={formik.handleSubmit}>

@@ -3,21 +3,17 @@ import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
-import {NextPageContext } from 'next'
 
-// dashboard.getInitialProps = async (ctx: NextPageContext) => {
-//   const cookie = ctx.req.headers.cookie;
+dashboard.getInitialProps = async () => {
+  const res = await fetch('http://localhost:3000/api/me'
+ );
+  const user = await res.json();
+  return {user: user.data}
+}
 
-//   const res = await fetch('http://localhost:3000/api/me', {
-//     headers: {
-//       cookie: cookie
-//     }
-//   });
-//   const user = await res.json();
-//   return {user: user.data}
-// }
+export default function dashboard({user : {name}}) {
+  const showName = name.split(' ')[0];
 
-export default function dashboard() {
   let loggedIn = false;
   return (
     <Fragment>
@@ -27,7 +23,7 @@ export default function dashboard() {
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
         </div>
         <div>
-          <h1 className='text-4xl mb-2 md:mb-4'>Welcome</h1>
+  <h1 className='text-4xl mb-2 md:mb-4'>Welcome {showName}</h1>
         </div>
         {!loggedIn ? <Fragment>
           <p className='text-2xl mb-3 text-teal-200'>You have not setup a profile yet.</p>
