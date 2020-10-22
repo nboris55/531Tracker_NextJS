@@ -18,6 +18,7 @@ export function AuthLinks() {
 }
 
 export function Logout() {
+
   return (
     <Link href='/'>
       <span className='text-teal-200 text-xl hover:text-white cursor-pointer'>

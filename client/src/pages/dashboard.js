@@ -2,19 +2,20 @@ import { Fragment } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import getUser from '../middleware/auth'
 
-dashboard.getInitialProps = async () => {
-  const res = await fetch('http://localhost:3000/api/me'
- );
-  const user = await res.json();
-  return {user: user.data}
+dashboard.getInitialProps = async (ctx) => {
+  const user = await getUser('http://localhost:3000/api/me', ctx)
+  if (!user) {
+    return {};
+  }
+  return {user : user.user}
+
 }
 
-export default function dashboard({user : {name}}) {
+export default function dashboard({user : {name}}, loggedIn) {
   const showName = name.split(' ')[0];
 
-  let loggedIn = false;
   return (
     <Fragment>
       <Navbar loggedIn={loggedIn} />

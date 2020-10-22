@@ -1,15 +1,15 @@
-import {Fragment, useState} from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function editProfile() {
-// const [openPrgrm, togglePrgrm] = useState(false);
+export default function editProfile(props) {
+  const id = props.id
   const formik = useFormik({
     initialValues: {
       bench:'',
       squat:'',
       overheadPress:'',
-      deadlift:''
+      deadlift:'',
+      id: id
     },
     validationSchema: Yup.object({
       bench: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
@@ -29,7 +29,7 @@ export default function editProfile() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(values)
+        body: JSON.stringify(values, id)
       })
       const user = await res.json()
       if (!user) {

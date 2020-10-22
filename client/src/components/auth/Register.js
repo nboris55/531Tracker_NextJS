@@ -2,9 +2,11 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Router from 'next/router'
+import {useRouter} from 'next/router'
 
 export default function register() {
+  const router = useRouter()
+
   const formik = useFormik({
     initialValues: {
       name:'',
@@ -25,15 +27,19 @@ export default function register() {
 
   async function submit(values) {
     try {
-      const res = await fetch('http://localhost:3000/api/users',{
+      const res = await fetch('http://localhost:3000/api/register',{
         method: 'POST',
         headers: {
-          "Accept": "application/json",
           "Content-Type": "application/json"
         },
         body: JSON.stringify(values)
       })
-      Router.push("/dashboard")
+      const user = await res.json()
+      if (!user) {
+        console.log('User not created')
+      } else {
+        router.push('/dashboard')
+      }
   } catch (error) {
     console.log(error) 
   }
