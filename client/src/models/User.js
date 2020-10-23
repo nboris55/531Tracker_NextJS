@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -19,6 +18,10 @@ const UserSchema = new mongoose.Schema({
       required: [true, 'Please add a password'],
       minlength: 6,
       select: false
+    },
+    profile: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Profile',
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,

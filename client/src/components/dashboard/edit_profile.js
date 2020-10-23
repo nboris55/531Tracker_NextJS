@@ -1,7 +1,10 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'next/router'
 
 export default function editProfile(props) {
+  const router = useRouter()
+
   const id = props.id
   const formik = useFormik({
     initialValues: {

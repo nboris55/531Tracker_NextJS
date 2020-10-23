@@ -16,6 +16,8 @@ export const authenticated = (fn) => async (req, res) => {
 }
 
 export default authenticated(async function getMe(req, res, id){
-        const user = await User.findById(id);
+        const user = await User.findById(id, 'name').populate('profile', 
+         'bench squat deadlift overheadPress'
+        );
         res.json({ success: true, data: user });
 })

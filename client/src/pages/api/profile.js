@@ -1,5 +1,6 @@
 import db from '../../middleware/db';
 import Profile from '../../models/Profile';
+import User from '../../models/User';
 
 db()
 
@@ -15,7 +16,13 @@ export default async (req,res ) => {
  });
 
  if (profile) {
+    const user = await User.findByIdAndUpdate({_id: id},{
+      profile: profile._id
+    })
+
    res.status(200).json({success: true, data: profile})
+ } else {
+    res.status(200).json({success: false})
  }
- res.status(200).json({success: false})
+
 }

@@ -9,6 +9,7 @@ dashboard.getInitialProps = async (ctx) => {
   if (!user) {
     return {};
   }
+  console.log(user)
   return {user : user.user}
 
 }
