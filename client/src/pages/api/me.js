@@ -21,3 +21,12 @@ export default authenticated(async function getMe(req, res, id){
         );
         res.json({ success: true, data: user });
 })
+
+// export function logout(req, res) {
+//    res.cookie('token', 'none', {
+//       expires: new Date(Date.now() + 10 * 1000),
+//       httpOnly: true
+//     });
+  
+//     res.status(200).json({ success: true, data: {} });
+// }

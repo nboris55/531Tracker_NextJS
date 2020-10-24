@@ -1,4 +1,5 @@
 import Link from 'next/link';
+// import { logout } from '../../pages/api/me'
 
 export function AuthLinks() {
   return (
