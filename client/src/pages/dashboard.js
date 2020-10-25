@@ -9,14 +9,23 @@ dashboard.getInitialProps = async (ctx) => {
   if (!user) {
     return {};
   }
-  console.log(user)
   return {user : user.user}
 
 }
 
-export default function dashboard({user : {name}}, loggedIn) {
+export default function dashboard({user : {name, profile}}, loggedIn) {
   const showName = name.split(' ')[0];
+  let showTable;
+  console.log(profile)
+  console.log(showTable)
 
+  if (!profile) {
+    showTable = false;
+  } else {
+    showTable = true;
+  }
+
+  console.log(showTable)
   return (
     <Fragment>
       <Navbar loggedIn={loggedIn} />
@@ -27,7 +36,7 @@ export default function dashboard({user : {name}}, loggedIn) {
         <div>
   <h1 className='text-4xl mb-2 md:mb-4'>Welcome {showName}</h1>
         </div>
-        {!loggedIn ? <Fragment>
+        {!showTable ? <Fragment>
           <p className='text-2xl mb-3 text-teal-200'>You have not setup a profile yet.</p>
           <Link href='/edit_profile'>
           <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2'>

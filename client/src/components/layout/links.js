@@ -1,5 +1,4 @@
 import Link from 'next/link';
-// import { logout } from '../../pages/api/me'
 
 export function AuthLinks() {
   return (
@@ -32,12 +31,22 @@ export function Dashboard() {
   return (
     <div className='text-center sm:text-left'>
      <Link href='/dashboard'>
-            <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2'>
+            <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2'
+            onClick={logout}>
               Back to dashboard
             </a>
           </Link>
   </div>
   );
+}
+
+function logout(req, res) {
+   res.cookie('token', 'none', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+  
+    res.status(200).json({ success: true, data: {} });
 }
 
 
