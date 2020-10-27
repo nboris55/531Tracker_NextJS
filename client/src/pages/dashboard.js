@@ -16,16 +16,14 @@ dashboard.getInitialProps = async (ctx) => {
 export default function dashboard({user : {name, profile}}, loggedIn) {
   const showName = name.split(' ')[0];
   let showTable;
-  console.log(profile)
-  console.log(showTable)
 
+  
   if (!profile) {
     showTable = false;
   } else {
     showTable = true;
   }
 
-  console.log(showTable)
   return (
     <Fragment>
       <Navbar loggedIn={loggedIn} />
