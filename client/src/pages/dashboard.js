@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
@@ -14,13 +14,15 @@ dashboard.getInitialProps = async (ctx) => {
 }
 
 export default function dashboard({user : {name, profile}}, loggedIn) {
+
+
   const showName = name.split(' ')[0];
   let showTable;
 
   
   if (!profile) {
     showTable = false;
-  } else {
+  } else { 
     showTable = true;
   }
 
@@ -62,7 +64,7 @@ export default function dashboard({user : {name, profile}}, loggedIn) {
           <div>
            <h1 className='text-3xl mt-10 mb-2'>Week at a glance</h1>
         </div>
-        <GlanceTable />
+        <GlanceTable profile={profile}/>
         </Fragment> }
         
       </div> 

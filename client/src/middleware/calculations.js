@@ -1,11 +1,4 @@
 
-export function tMax(profile) {
-    const bench = Math.floor(profile.bench * .9)
-    const squat = Math.floor(profile.squat * .9)
-    const overheadPress = Math.floor(profile.overheadPress * .9)
-    const deadlift = Math.floor(profile.deadlift * .9)
-}
-
 const CalcPlates = () => {
     const platesArr = [90, 50, 20, 10, 5];
     const x = 135;

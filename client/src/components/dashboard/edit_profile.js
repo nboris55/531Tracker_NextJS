@@ -10,15 +10,15 @@ export default function editProfile(props) {
     initialValues: {
       bench:'',
       squat:'',
-      overheadPress:'',
       deadlift:'',
+      overheadPress:'',
       id: id
     },
     validationSchema: Yup.object({
       bench: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
       squat: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
-      overheadPress: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
       deadlift: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
+      overheadPress: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000'),
     }),
     onSubmit: values => {
      submit(values)
@@ -97,25 +97,6 @@ return(<div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5x
             </div> ) : null} 
       </div>
       <div className='mb-4'>
-        <label className='block text-sm font-bold mb-2' htmlFor='overheadPress'>
-          Overhead Press
-        </label>
-        <input
-          className='shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline text-gray-800'
-          name='overheadPress'
-          id='overheadPress'
-          type='number'
-          placeholder='Enter your one rep max for the overhead press'
-          {...formik.getFieldProps('overheadPress')}
-        />
-        {formik.touched.overheadPress && formik.errors.overheadPress ? (
-            <div role="alert" className='mb-2'>
-              <div className="border border-red-400 rounded bg-red-100 px-4 py-3 text-red-700">
-                <p>{formik.errors.overheadPress}</p>
-                </div>
-            </div> ) : null} 
-      </div>
-      <div className='mb-4'>
         <label className='block text-sm font-bold mb-2' htmlFor='deadlift'>
           Deadlift
         </label>
@@ -131,6 +112,25 @@ return(<div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5x
             <div role="alert" className='mb-2'>
               <div className="border border-red-400 rounded bg-red-100 px-4 py-3 text-red-700">
                 <p>{formik.errors.deadlift}</p>
+                </div>
+            </div> ) : null} 
+      </div>
+      <div className='mb-4'>
+        <label className='block text-sm font-bold mb-2' htmlFor='overheadPress'>
+          Overhead Press
+        </label>
+        <input
+          className='shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline text-gray-800'
+          name='overheadPress'
+          id='overheadPress'
+          type='number'
+          placeholder='Enter your one rep max for the overhead press'
+          {...formik.getFieldProps('overheadPress')}
+        />
+        {formik.touched.overheadPress && formik.errors.overheadPress ? (
+            <div role="alert" className='mb-2'>
+              <div className="border border-red-400 rounded bg-red-100 px-4 py-3 text-red-700">
+                <p>{formik.errors.overheadPress}</p>
                 </div>
             </div> ) : null} 
       </div>
