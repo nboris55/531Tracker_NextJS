@@ -38,8 +38,7 @@ export default function editProfile(props) {
       if (!user) {
         console.log('User not found')
       } else {
-        console.log(user)
-        // router.push('/dashboard')
+        router.push('/dashboard')
       }
   } catch (error) {
     console.log(error) 
