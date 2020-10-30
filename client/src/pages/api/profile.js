@@ -7,22 +7,29 @@ db()
 export default async (req,res ) => {
   const {id, bench, squat, overheadPress, deadlift } = req.body
 
+  const user = await User.findById({_id: id})
+
+  if (user.profile) {
+   const profile = await Profile.findByIdAndUpdate({_id: user.profile}, req.body, {
+    new: true,
+    runValidators: true
+   })
+   res.status(200).json({success: true, message: 'Profile updated', data: user})
+  } else {
    const profile = await Profile.create({
     user: id,
     bench,
     squat,
     overheadPress,
     deadlift
- });
+  });
 
- if (profile) {
-    const user = await User.findByIdAndUpdate({_id: id},{
-      profile: profile._id
+  const user = await User.findByIdAndUpdate({_id: id},{
+    profile: profile._id
     })
+ 
 
-   res.status(200).json({success: true, data: profile})
- } else {
-    res.status(200).json({success: false})
- }
+  res.status(200).json({success: true, message: 'New profile created', data: user.profile})
+  }
 
 }
