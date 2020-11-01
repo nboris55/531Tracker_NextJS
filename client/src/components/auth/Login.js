@@ -32,7 +32,7 @@ export default function login() {
       })
       const user = await res.json()
       if (!user) {
-        console.log('User not found')
+        router.push('/register')
       } else {
         router.push('/dashboard')
       }

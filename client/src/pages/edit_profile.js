@@ -13,7 +13,7 @@ editProfile.getInitialProps = async (ctx) => {
 
 }
 
-export default function editProfile({user: {_id}}, loggedIn) {
+export default function editProfile({user: {_id, profile}}, loggedIn) {
 
   return (
     <Fragment>
@@ -23,7 +23,7 @@ export default function editProfile({user: {_id}}, loggedIn) {
           <h1 className='text-5xl sm:text-6xl font-bold mb-2 sm:mb-4 text-center sm:text-left'>Profile</h1>
         </div>
         <Dashboard />
-      <EditProfile id = {_id}/>
+      <EditProfile id = {_id} profile={profile}/>
     </div>   
     </Fragment>
   )

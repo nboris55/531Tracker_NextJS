@@ -17,10 +17,10 @@ function round5(numb) {
     return final
   }
 
-export default function GlanceTable({profile: {bench, squat, deadlift, overheadPress}}) {
+export default function GlanceTable({profile: {bench, squat, overheadPress, deadlift}}) {
  /* --- This is the same as below ---- */
  const lifts = [.65, .70, .75, .80, .85, .90, .95]
- const percentages = [bench, squat, deadlift, overheadPress]
+ const percentages = [bench, squat, overheadPress, deadlift]
  let arr = []
  
  lifts.map((v,i) => {percentages.map((v2,i2)=>{arr.push(round5(Math.floor(v*v2)))})})
@@ -30,10 +30,10 @@ export default function GlanceTable({profile: {bench, squat, deadlift, overheadP
   const overheadPressRM = round5(overheadPress)
   const deadliftRM = round5(deadlift)
 
-  const bench6 = round5(Math.floor(bench + 30))
-  const squat6 = round5(Math.floor(squat + 60))
-  const overheadPress6 = round5(Math.floor(overheadPress + 30))
-  const deadlift6 = round5(Math.floor(deadlift + 60))
+  const bench6 = round5(Math.floor(bench + 5) * .9 ) 
+  const squat6 = round5(Math.floor(squat + 10) * .9) 
+  const overheadPress6 = round5(Math.floor(overheadPress + 5) * .9) 
+  const deadlift6 = round5(Math.floor(deadlift + 10)  * .9)
   
   const bench65 = arr[0]
   const squat65 = arr[1]
@@ -78,7 +78,7 @@ export default function GlanceTable({profile: {bench, squat, deadlift, overheadP
             <th className='px-4 py-2'>Lift</th>
             <th className='px-4 py-2'>Rep Max</th>
             <th className='px-4 py-2'>Training Max</th>
-            <th className='px-4 py-2'>6 Week Potential</th>
+            <th className='px-4 py-2'>Next Cycle TMs</th>
           </tr>
         </thead>
         <tbody className='text-gray-800' >
