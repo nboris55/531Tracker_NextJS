@@ -3,11 +3,6 @@ import Link from 'next/link';
 export function AuthLinks() {
   return (
       <div className='space-x-3'>
-        <Link href='/profiles'>
-          <a className='text-red-200 text-xl hover:text-white'>
-            Profiles
-          </a>
-        </Link>
         <Link href='/register'>
           <a className='text-teal-200 text-xl hover:text-white'>
             Register
