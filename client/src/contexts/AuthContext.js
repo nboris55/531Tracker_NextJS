@@ -4,7 +4,7 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
     //     delete api.defaults.headers.Authorization
     //     window.location.pathname = '/login'
     // }
+    
 
 
     return (
@@ -48,6 +49,6 @@ export const AuthProvider = ({ children }) => {
     )
 }
 
-
-
 export const useAuth = () => useContext(AuthContext)
+
+
