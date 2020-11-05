@@ -1,12 +1,14 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router'
+import useUser from '../middleware/user'
 import Navbar from '../components/layout/Navbar';
 
 export default function login() {
   const router = useRouter();
+  const {user, mutate} = useUser()
 
   const formik = useFormik ({
     initialValues: {
@@ -33,14 +35,22 @@ export default function login() {
       })
       const user = await res.json()
       if (!user) {
-        router.push('/register')
+        router.replace('/register')
+        mutate()
       } else {
-        router.push('/dashboard')
+        router.replace('/dashboard')
       }
   } catch (error) {
     console.log(error) 
   }
   }
+
+  // if logged in, redirect to the dashboard
+  useEffect(() => {
+    if (user) {
+      router.replace("/dashboard");
+    }
+  }, [user]);
 
   return (
     <Fragment>

@@ -19,11 +19,12 @@ export default async (req,res) => {
             expiresIn: process.env.JWT_EXPIRE
         })
       res.setHeader('Set-Cookie', cookie.serialize('auth', token, {
-          httpOnly: true,
+          httpOnly: false,
           sameSite: 'strict',
           maxAge: process.env.JWT_COOKIE_EXPIRE,
           path:'/'
       })) 
+      
       res.status(200).json({success: true})
     } else {
         res.status(400).json({success: false, message: 'Invalid email or password'}) 

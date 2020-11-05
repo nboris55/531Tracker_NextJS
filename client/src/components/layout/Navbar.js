@@ -1,8 +1,25 @@
+import { Fragment, useEffect } from 'react';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthLinks, Logout } from './links';
+import useUser from '../../middleware/user'
+import Router from 'next/router'
+import Link from 'next/link';
+import Cookies from 'js-cookie'
 
-export default function Navbar({loggedIn}) {
+export default function Navbar() {
+  const { user, mutate } = useUser();
+  
+  let loggedIn = false
+  if (user) {
+    loggedIn = true
+  }
+
+  function logout() {
+    Cookies.remove('auth')
+    mutate(null)
+    Router.replace('/')
+   }
 
   return (
     <nav className='flex items-center justify-between bg-gray-700 p-3 h-16 nav'>
@@ -11,7 +28,30 @@ export default function Navbar({loggedIn}) {
           <FontAwesomeIcon icon={faDumbbell} /> 531 TRACKER
         </span>
       </div>
-      {loggedIn ? <Logout /> : <AuthLinks />}
+      {loggedIn ? <div className='space-x-3'>
+      <Link href='/profiles'>
+          <a className='text-red-200 text-xl hover:text-white'>
+            Profiles
+          </a>
+      </Link>
+      <Link href='/'>
+        <button className='text-teal-200 text-xl hover:text-white cursor-pointer' onClick={logout}>
+          Logout
+        </button>
+      </Link>
+    </div>  : (<div className='space-x-3'>
+        <Link href='/register'>
+          <a className='text-teal-200 text-xl hover:text-white'>
+            Register
+          </a>
+        </Link>
+        <Link href='/login'>
+          <a className='text-teal-200 text-xl hover:text-white'>
+            Login
+          </a>
+        </Link>
+      </div>
+      )}
     </nav>
   );
 }
