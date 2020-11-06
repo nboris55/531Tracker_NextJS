@@ -2,11 +2,14 @@ import { Fragment, useEffect } from 'react';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-
+import { useAuth } from '../../context/auth';
 
 export default function Navbar() {
+  const { user, logout } = useAuth()
 
-  let loggedIn = false
+ let loggedIn = false
+
+ if (user) loggedIn = true
 
   return (
     <nav className='flex items-center justify-between bg-gray-700 p-3 h-16 nav'>

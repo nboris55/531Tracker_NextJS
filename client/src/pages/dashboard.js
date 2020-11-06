@@ -2,16 +2,16 @@ import { Fragment, useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
-import useUser from '../middleware/user';
+import { useAuth } from '../context/auth';
 
 function dashboard() {
-  const { user, loading, loggedOut, mutate } = useUser();
+  const { user, loading } = useAuth()
 
-  let id, name, profile, showTable
+  let name, profile, showTable
 
   if (!loading) {
-    name = user.data.name
-    profile = user.data.profile
+    name = user.name
+    profile = user.profile
   }
 
   if (profile) showTable = true

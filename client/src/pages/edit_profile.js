@@ -9,11 +9,12 @@ import { Dashboard } from '../components/layout/links'
 export default function editProfile() {
 
   let profile, id 
+  let loading = false
 
-  if (!loading) {
-    profile = user.profile
-    id = user._id
-  }
+  // if (!loading) {
+  //   profile = user.profile
+  //   id = user._id
+  // }
 
   let bench = ''
   let squat = ''
