@@ -13,7 +13,7 @@ function dashboard() {
     profile = user.profile
   }
 
-  if (profile) showTable
+  if (profile) showTable = true
 
   return (
     <Fragment>
@@ -23,7 +23,7 @@ function dashboard() {
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
         </div>
         <div>
-      <h1 className='text-4xl mb-2 md:mb-4'>Welcome </h1>
+      <h1 className='text-4xl mb-2 md:mb-4'>Welcome {name}</h1>
         </div>
         {!showTable ? <Fragment>
           <p className='text-2xl mb-3 text-teal-200'>You have not setup a profile yet.</p>

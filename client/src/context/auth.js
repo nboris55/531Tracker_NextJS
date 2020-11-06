@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import Cookies from 'js-cookie'
+import Router from 'next/router'
 
 const AuthContext = createContext({});
 
@@ -21,28 +22,14 @@ export const AuthProvider = ({ children }) => {
         loadUserFromCookies()
     }, [])
 
-    const login = async (email, password) => {
-        const { data: token } = await api.post('auth/login', { email, password })
-        if (token) {
-            console.log("Got token")
-            Cookies.set('token', token, { expires: 60 })
-            api.defaults.headers.Authorization = `Bearer ${token.token}`
-            const { data: user } = await api.get('users/me')
-            setUser(user)
-            console.log("Got user", user)
-        }
-    }
-
-    const logout = (email, password) => {
-        Cookies.remove('token')
+    const logout = () => {
+        Cookies.remove('auth')
         setUser(null)
-        delete api.defaults.headers.Authorization
-        window.location.pathname = '/login'
-    }
-
+        Router.replace('/')
+      }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: !!user, user, login, loading, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated: !!user, user, loading, logout }}>
             {children}
         </AuthContext.Provider>
     )
