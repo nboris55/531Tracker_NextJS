@@ -2,15 +2,16 @@ import { Fragment, useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
-import { useAuth } from '../context/auth'
+import useUser from '../middleware/user';
 
 function dashboard() {
-  const {user, loading} = useAuth()
-  let name, profile, showTable
+  const { user, loading, loggedOut, mutate } = useUser();
+
+  let id, name, profile, showTable
 
   if (!loading) {
-    name = user.name
-    profile = user.profile
+    name = user.data.name
+    profile = user.data.profile
   }
 
   if (profile) showTable = true
@@ -45,7 +46,7 @@ function dashboard() {
             </a>
           </Link>
         <Link href='/edit_profile'>
-            <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2' profile={profile}>
+            <a className='block sm:inline-block rounded-full py-1 px-3 bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline mb-2'>
               Edit Profile
             </a>
           </Link>

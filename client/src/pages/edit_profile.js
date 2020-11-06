@@ -5,21 +5,27 @@ import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
 import { Dashboard } from '../components/layout/links'
 
+
 export default function editProfile() {
- 
+
+  let profile, id 
+
+  if (!loading) {
+    profile = user.profile
+    id = user._id
+  }
+
   let bench = ''
   let squat = ''
   let overheadPress = ''
   let deadlift = ''
 
-  // if (profile) {
-  //   bench = profile.bench
-  //   squat = profile.squat
-  //   overheadPress = profile.overheadPress
-  //   deadlift = profile.deadlift
-  //   console.log(bench)
-  // }
-  
+  if (profile) {
+    bench = profile.bench
+    squat = profile.squat
+    overheadPress = profile.overheadPress
+    deadlift = profile.deadlift
+  }
   
   const formik = useFormik({
     initialValues: {
@@ -27,7 +33,7 @@ export default function editProfile() {
       squat,
       overheadPress,
       deadlift,
-      // id: id
+      id: id
     },
     validationSchema: Yup.object({
       bench: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000').required('Please enter your bench max'),
@@ -47,7 +53,7 @@ export default function editProfile() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(values, id)
+        body: JSON.stringify(values)
       })
       const user = await res.json()
       if (!user) {
@@ -61,10 +67,13 @@ export default function editProfile() {
   }
   
 return(
-  <Fragment><Navbar/>
- 
+  <Fragment>
+    {loading ? ('Loading...') : (<Fragment>  <Navbar/>
     <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto">
-    <Dashboard/>
+      <div>
+        <h1 className='text-5xl sm:text-6xl font-bold mb-2 sm:mb-4 text-center sm:text-left'>Profile</h1>
+      </div>
+        <Dashboard />
         <form className="bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10" onSubmit={formik.handleSubmit}>
           <div className='mb-4 mt-4'>
             <p className=' text-sm font-bold mb-2' >* in lbs please</p>
@@ -159,6 +168,8 @@ return(
           </button>
         </form>  
         </div>
+      </Fragment>)}
       </Fragment>
+  
       )
 }

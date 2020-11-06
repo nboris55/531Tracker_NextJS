@@ -1,12 +1,12 @@
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/index.css';
-import { AuthProvider } from '../context/auth'
+import { SWRConfig } from 'swr'
 
 function MyApp({ Component, pageProps }) {
   return (
-  <AuthProvider><Component {...pageProps} /></AuthProvider>
- 
-
+    <SWRConfig  value={{ fetcher: (url) => fetch(url).then(res => res.json())
+    }}>
+         <Component {...pageProps} />
+    </SWRConfig>
    ) ;
 }
 

@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 
 
 export default function ProfileItem({user}) {
-  console.log(user)
   return (
      <Fragment>
       <div className='rounded-md border-2 mt-5 p-2'>
