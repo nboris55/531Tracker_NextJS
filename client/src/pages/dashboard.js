@@ -2,31 +2,18 @@ import { Fragment, useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
-import useUser from '../middleware/user'
-import Router from 'next/router'
+import { useAuth } from '../context/auth'
 
 function dashboard() {
-  const {user, loading, loggedOut, mutate} = useUser()
-
-  let name,profile,showTable
+  const {user, loading} = useAuth()
+  let name, profile, showTable
 
   if (!loading) {
-    name = user.data.name
-    profile = user.data.profile
+    name = user.name
+    profile = user.profile
   }
 
-  if (profile) {
-    showTable = true
-  }
-  
-  // // if logged out, redirect to the homepage
-  // useEffect(() => {
-  //   if (loggedOut) {
-  //     Router.replace("/");
-  //   }
-  // }, [loggedOut]);
-  // if (loggedOut) return "redirecting...";
-
+  if (profile) showTable
 
   return (
     <Fragment>
@@ -36,7 +23,7 @@ function dashboard() {
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
         </div>
         <div>
-      <h1 className='text-4xl mb-2 md:mb-4'>Welcome {name}</h1>
+      <h1 className='text-4xl mb-2 md:mb-4'>Welcome </h1>
         </div>
         {!showTable ? <Fragment>
           <p className='text-2xl mb-3 text-teal-200'>You have not setup a profile yet.</p>
@@ -66,7 +53,7 @@ function dashboard() {
           <div>
            <h1 className='text-3xl mt-10 mb-2'>Week at a glance</h1>
         </div>
-        <GlanceTable profile={profile} />
+        <GlanceTable />
         </Fragment> }
         
       </div> 

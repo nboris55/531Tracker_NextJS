@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 import Router from 'next/router'
 import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
-import useUser from '../middleware/user'
 import { Dashboard } from '../components/layout/links'
 
 export default function editProfile() {

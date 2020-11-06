@@ -8,7 +8,6 @@ import Navbar from '../components/layout/Navbar';
 
 export default function register() {
   const router = useRouter()
-  const {user, mutate} = useUser()
 
   const formik = useFormik({
     initialValues: {
@@ -47,13 +46,6 @@ export default function register() {
     console.log(error) 
   }
   }
-
-  // if logged in, redirect to the dashboard
-  useEffect(() => {
-    if (user) {
-    router.replace("/dashboard");
-    }
-  }, [user]);
 
   return (
    

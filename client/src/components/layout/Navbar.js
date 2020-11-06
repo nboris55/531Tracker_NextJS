@@ -1,25 +1,12 @@
 import { Fragment, useEffect } from 'react';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AuthLinks, Logout } from './links';
-import useUser from '../../middleware/user'
 import Router from 'next/router'
 import Link from 'next/link';
 import Cookies from 'js-cookie'
 
 export default function Navbar() {
-  const { user, mutate } = useUser();
-  
   let loggedIn = false
-  if (user) {
-    loggedIn = true
-  }
-
-  function logout() {
-    Cookies.remove('auth')
-    mutate(null)
-    Router.replace('/')
-   }
 
   return (
     <nav className='flex items-center justify-between bg-gray-700 p-3 h-16 nav'>
