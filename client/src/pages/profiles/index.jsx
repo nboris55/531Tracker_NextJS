@@ -1,10 +1,20 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import ProfileItem from '../../components/Profiles/ProfileItem';
 import {Dashboard} from '../../components/layout/links'
 import useSWR from 'swr'
+import { useAuth } from '../../context/auth';
+import Router from 'next/router'
 
 export default function profiles() {
+ const { user, loading } = useAuth()
+ // if logged in, redirect to the dashboard
+ useEffect(() => {
+  if (!loading && !user) {
+    Router.replace("/");
+  }
+}, [user]);
+
  const { data } = useSWR('http://localhost:3000/api/profiles')
  let person
 

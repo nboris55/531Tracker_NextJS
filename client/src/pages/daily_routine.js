@@ -1,10 +1,19 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import DailyRoutine from '../components/dashboard/daily_routine'
 import { Dashboard } from '../components/layout/links'
+import Router from 'next/router'
+import { useAuth } from '../context/auth';
 
 export default function dailyRoutine() {
-   
+  const { user, loading } = useAuth()
+   // if logged in, redirect to the dashboard
+   useEffect(() => {
+    if (!loading && !user) {
+      Router.replace("/");
+    }
+  }, [user]);
+  
   return (
     <Fragment>
       <Navbar />

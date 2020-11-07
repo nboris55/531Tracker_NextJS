@@ -7,6 +7,7 @@ db()
 export default async (req,res ) => {
   const {id, bench, squat, overheadPress, deadlift } = req.body
   const user = await User.findById({_id: id})
+  console.log(user.profile)
   if (user.profile) {
    const profile = await Profile.findByIdAndUpdate({_id: user.profile}, req.body, {
     new: true,

@@ -1,20 +1,28 @@
+import { useEffect } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Router from 'next/router'
 import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
 import { Dashboard } from '../components/layout/links'
+import { useAuth } from '../context/auth';
 
 
 export default function editProfile() {
+  const {user, loading} = useAuth()
+  // if logged in, redirect to the dashboard
+  useEffect(() => {
+    if (!loading && !user) {
+      Router.replace("/");
+    }
+  }, [user]);
 
   let profile, id 
-  let loading = false
 
-  // if (!loading) {
-  //   profile = user.profile
-  //   id = user._id
-  // }
+  if (!loading) {
+    profile = user.profile
+    id = user._id
+  }
 
   let bench = ''
   let squat = ''
@@ -36,6 +44,7 @@ export default function editProfile() {
       deadlift,
       id: id
     },
+    enableReinitialize:true,
     validationSchema: Yup.object({
       bench: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000').required('Please enter your bench max'),
       squat: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000').required('Please enter your squat max'),
