@@ -36,14 +36,15 @@ const ProfileSchema = new mongoose.Schema({
       },
     metrics: [
       {
-      totalDays: Number,
+      totalDays: {
+        type: Number,
+        default: 0,
       },
-      {
-        currentDay: Number
+      currentDay: {
+        type: Number,
+        default: 0
       },
-      {
-        bestLift: Number
-      }
+    },
   ],
     createdAt: {
       type: Date,

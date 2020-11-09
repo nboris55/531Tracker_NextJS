@@ -32,7 +32,7 @@ export default function login() {
         body: JSON.stringify(values)
       })
       const user = await res.json()
-      if (!user) {
+      if (res.status == 400) {
         router.replace('/register')
       } else {
         router.replace('/dashboard')
