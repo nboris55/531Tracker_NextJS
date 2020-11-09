@@ -7,6 +7,8 @@ const ProfileSchema = new mongoose.Schema({
     },
     program: {
       type: String,
+      // enum: ['A - Same lift for main and assistance', 'B - Opposite lift for main and assistance'],
+      // default: 'Please select a program variation'
     },
     bench: {
       type: Number,
@@ -32,6 +34,17 @@ const ProfileSchema = new mongoose.Schema({
         maxlength: 3,
         required: [true, 'Please enter your deadlift max'],
       },
+    metrics: [
+      {
+      totalDays: Number,
+      },
+      {
+        currentDay: Number
+      },
+      {
+        bestLift: Number
+      }
+  ],
     createdAt: {
       type: Date,
       default: Date.now

@@ -24,20 +24,24 @@ export default function editProfile() {
     id = user._id
   }
 
+  let program = ''
   let bench = ''
   let squat = ''
   let overheadPress = ''
   let deadlift = ''
 
   if (profile) {
+    program = profile.program[0]
     bench = profile.bench
     squat = profile.squat
     overheadPress = profile.overheadPress
     deadlift = profile.deadlift
+    console.log(program)
   }
   
   const formik = useFormik({
     initialValues: {
+      program,
       bench,
       squat,
       overheadPress,
@@ -46,6 +50,7 @@ export default function editProfile() {
     },
     enableReinitialize:true,
     validationSchema: Yup.object({
+      program: Yup.string(),
       bench: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000').required('Please enter your bench max'),
       squat: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000').required('Please enter your squat max'),
       overheadPress: Yup.number().min(5, 'Lift must be 5 or more').max(1000, 'Lift must be less than or equal to 1000').required('Please enter your overhead press max'),
@@ -57,6 +62,7 @@ export default function editProfile() {
   })
 
   async function submit(values) {
+    console.log(values)
     try {
       const res = await fetch('http://localhost:3000/api/profile',{
         method: 'POST',
@@ -92,8 +98,8 @@ return(
             </label>
             <select name='program' className='mt-2 shadow appearance-none border rounded w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline text-gray-800'>
               <option value="" label="Select program variation" />
-              <option value="a" label="(A) - Same lifts for main and secondary exercises" />
-              <option value="b" label="(B) - Different lifts for main and secondary exercises" />
+              <option value="A - Same lift for main and assistance" label="A - Same lift for main and assistance" />
+              <option value="B - Opposite lift for main and assistance" label="B - Opposite lift for main and assistance" />
             </select>
           </div>
           <div className='mb-4 mt-4'>

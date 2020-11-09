@@ -10,7 +10,7 @@ export default async function(req,res) {
         if (!err && decoded) {
            const id = decoded.userId
            const user = await User.findById(id, 'name').populate('profile', 
-           'bench squat deadlift overheadPress'
+           'program bench squat deadlift overheadPress'
           );
           res.json({ success: true, data: user });
         }

@@ -17,6 +17,7 @@ export default async (req,res ) => {
   } else {
    const profile = await Profile.create({
     user: id,
+    program,
     bench,
     squat,
     overheadPress,

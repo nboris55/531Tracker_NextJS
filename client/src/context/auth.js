@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import Router from 'next/router'
+import login from '../pages/login';
 
 const AuthContext = createContext({});
 
@@ -35,14 +36,6 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     )
 }
-
-export const ProtectRoute = ({ children }) => {
-    const { isAuthenticated, isLoading } = useAuth();
-    if (isLoading || (!isAuthenticated)){
-      return ('hello'); 
-    }
-    return children;
-  };
 
 
 

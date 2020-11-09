@@ -1,6 +1,6 @@
 import '../../styles/index.css';
 import { SWRConfig } from 'swr'
-import { AuthProvider } from '../context/auth'
+import { AuthProvider} from '../context/auth'
 
 function MyApp({ Component, pageProps }) {
   return (
