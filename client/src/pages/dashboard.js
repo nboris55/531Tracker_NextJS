@@ -12,7 +12,6 @@ function dashboard() {
   if (!loading && user) {
     name = user.name
     profile = user.profile
-    console.log(profile)
   }
 
   if (profile) showTable = true

@@ -1,12 +1,26 @@
 import { Fragment, useEffect } from 'react';
+import Router from 'next/router'
 import Navbar from '../../components/layout/Navbar';
 import ProfileItem from '../../components/Profiles/ProfileItem';
 import {Dashboard} from '../../components/layout/links'
-import useSWR from 'swr'
 import { useAuth } from '../../context/auth';
-import Router from 'next/router'
 
-export default function profiles() {
+
+import db from '../../middleware/db';
+import User from '../../models/User';
+
+export async function getServerSideProps () {
+  await db()
+ 
+  const users = await User.find().populate('profile')
+  const string = JSON.stringify(users)
+  const data = JSON.parse(string)
+  return {
+    props : {data}
+  }
+}
+
+export default function profiles({data}) {
  const { user, loading } = useAuth()
  // if logged in, redirect to the dashboard
  useEffect(() => {
@@ -15,11 +29,10 @@ export default function profiles() {
   }
 }, [user]);
 
- const { data } = useSWR('http://localhost:3000/api/profiles')
  let person
 
  if (data) {
-   person = data.data
+   person = data
  }
  
   return (

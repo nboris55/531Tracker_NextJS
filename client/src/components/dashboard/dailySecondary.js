@@ -2,7 +2,7 @@ import { Fragment,useState } from 'react';
 import { faPlus, faMinus,faCaretDown,faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function dailyRoutine(props) {
+export default function dailySecondary(props) {
   const [openLift, toggleLift] = useState(false);
   const lift=props.lift;
   let order;
@@ -31,20 +31,32 @@ export default function dailyRoutine(props) {
               <tr>
                 <td className='px-4 py-2'><input type="checkbox" id="" name="" value="" /></td>
                 <td className='px-4 py-2'><FontAwesomeIcon icon={faMinus} className='cursor-pointer'/>{' '}
-                 5 <FontAwesomeIcon icon={faPlus} className='cursor-pointer'/> </td>
-                <td className='px-4 py-2'>225</td>
+                 10 <FontAwesomeIcon icon={faPlus} className='cursor-pointer'/> </td>
+                <td className='px-4 py-2'>115</td>
               </tr>
               <tr>
                 <td className='px-4 py-2'><input type="checkbox" id="" name="" value="" /></td>
                 <td className='px-4 py-2'><FontAwesomeIcon icon={faMinus} className='cursor-pointer'/>{' '}
-                3 <FontAwesomeIcon icon={faPlus} className='cursor-pointer' /></td>
-                <td className='px-4 py-2'>225</td>
+                10 <FontAwesomeIcon icon={faPlus} className='cursor-pointer' /></td>
+                <td className='px-4 py-2'>115</td>
               </tr>
               <tr>
                 <td className='px-4 py-2'><input type="checkbox" id="" name="" value="" /></td>
                 <td className='px-4 py-2'><FontAwesomeIcon icon={faMinus} className='cursor-pointer' />{' '}
-                1 <FontAwesomeIcon icon={faPlus} className='cursor-pointer'/></td>
-                <td className='px-4 py-2'>225</td>
+                10 <FontAwesomeIcon icon={faPlus} className='cursor-pointer'/></td>
+                <td className='px-4 py-2'>115</td>
+              </tr>
+              <tr>
+                <td className='px-4 py-2'><input type="checkbox" id="" name="" value="" /></td>
+                <td className='px-4 py-2'><FontAwesomeIcon icon={faMinus} className='cursor-pointer' />{' '}
+                10 <FontAwesomeIcon icon={faPlus} className='cursor-pointer'/></td>
+                <td className='px-4 py-2'>115</td>
+              </tr>
+              <tr>
+                <td className='px-4 py-2'><input type="checkbox" id="" name="" value="" /></td>
+                <td className='px-4 py-2'><FontAwesomeIcon icon={faMinus} className='cursor-pointer' />{' '}
+                10 <FontAwesomeIcon icon={faPlus} className='cursor-pointer'/></td>
+                <td className='px-4 py-2'>115</td>
               </tr>
             </tbody>
           </table>

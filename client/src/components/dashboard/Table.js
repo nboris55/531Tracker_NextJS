@@ -25,10 +25,10 @@ export default function GlanceTable({profile: {bench, squat, overheadPress, dead
  
  lifts.map((v,i) => {percentages.map((v2,i2)=>{arr.push(round5(Math.floor(v*v2)))})})
  /*----[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]-----*/
-  const benchRM = round5(bench)
-  const squatRM = round5(squat)
-  const overheadPressRM = round5(overheadPress)
-  const deadliftRM = round5(deadlift)
+  const benchRM = bench
+  const squatRM = squat
+  const overheadPressRM = overheadPress
+  const deadliftRM = deadlift
 
   const bench6 = round5(Math.floor(bench + 5) * .9 ) 
   const squat6 = round5(Math.floor(squat + 10) * .9) 

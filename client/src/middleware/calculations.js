@@ -29,34 +29,12 @@ const CalcPlates = () => {
     const p2 = math[4] * 2;
   };
 
-//   const x = repMax.number;
-//   const tMax = x * 0.9;
+export function calcDailyRoutine ({bench, squat, deadlift, overheadPress}) {
+  const lifts = [.65, .70, .75, .80, .85, .90, .95]
+  const percentages = [bench, squat, overheadPress, deadlift]
+  let arr = []
+  
+  lifts.map((v,i) => {percentages.map((v2,i2)=>{arr.push(Math.floor(v*v2))})})
 
-//   const a = Math.floor(tMax * 0.65);
-//   const b = Math.floor(tMax * 0.75);
-//   const c = Math.floor(tMax * 0.85);
-
-//   const arr = [a, b, c];
-//   let newArr = [];
-
-//   function round5(numb) {
-//     let final = 0;
-//     let ld = numb % 10;
-//     if (ld < 5) {
-//       final = numb - ld;
-//     }
-//     if (ld > 5) {
-//       const a = 10 - ld;
-//       final = numb + a;
-//     }
-//     if (ld === 5) {
-//       final = numb;
-//     }
-//     newArr.push(final);
-//   }
-
-//   arr.forEach(round5);
-
-//   const firstSet = newArr[0];
-//   const secondSet = newArr[1];
-//   const thirdSet = newArr[2];
+  return { arr }
+}
