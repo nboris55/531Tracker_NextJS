@@ -3,9 +3,19 @@ import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
 import { useAuth } from '../context/auth';
+import Router from 'next/router'
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 function dashboard() {
   const { user, loading } = useAuth()
+ 
+   // if not logged in redirect to homepage
+   useEffect(() => {
+    if ( !user) {
+      Router.replace("/");
+    }
+  }, [user]);
 
   let name, profile, showTable
 

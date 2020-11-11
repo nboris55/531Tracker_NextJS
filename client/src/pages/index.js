@@ -1,11 +1,21 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/layout/Navbar';
+import { useAuth } from '../context/auth';
+import Router from 'next/router'
 
 export default function Home() {
+  const { user, loading } = useAuth()
+   // if logged in, redirect to the dashboard
+   useEffect(() => {
+    if ( user ) {
+      Router.replace("/dashboard");
+    }
+  }, [user]);
+
   return (
     <Fragment>
-      <Navbar />{' '}
+      <Navbar />
       <section className='flex items-center justify-center h-screen overlay landing'>
         <div className='dark-overlay'>
           <div className='text-white text-center'>

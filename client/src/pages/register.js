@@ -10,7 +10,7 @@ export default function register() {
   const { user, loading } = useAuth()
  // if logged in, redirect to the dashboard
  useEffect(() => {
-  if (!loading && user) {
+  if (user) {
     router.replace("/dashboard");
   }
 }, [user]);
