@@ -34,21 +34,41 @@ const ProfileSchema = new mongoose.Schema({
         maxlength: 3,
         required: [true, 'Please enter your deadlift max'],
       },
-    metrics: [
-      {
-      totalDays: {
+    totalDays: {
         type: Number,
         default: 0,
       },
-      currentDay: {
+    currentDay: {
         type: Number,
         default: 0
       },
+    currentWeek: {
+      type: Number,
+      default: 0
     },
-  ],
+    benchVolume : {
+        type: Number,
+        default: 0
+    },
+    squatVolume : {
+      type: Number,
+      default: 0
+    },
+    overheadPressVolume : {
+      type: Number,
+      default: 0
+    },
+    deadliftVolume : {
+      type: Number,
+      default: 0
+    },
     createdAt: {
       type: Date,
       default: Date.now
+    },
+    latestWorkout: {
+      type: Date,
+      default: null
     }
   });
 

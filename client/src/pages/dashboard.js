@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { useAuth } from '../context/auth';
 import Router from 'next/router'
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
-
 function dashboard() {
   const { user, loading } = useAuth()
  
