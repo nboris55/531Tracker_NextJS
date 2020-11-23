@@ -14,10 +14,12 @@ export default async (req,res ) => {
             const profile = await Profile.findByIdAndUpdate({_id: _id}, 
             {
              benchVolume: req.body.benchVolume + volume,
+             dates: Date.now()
             }, 
             {
             new: true,
             runValidators: true,
+            upsert: true
             })
           } catch (error) {
             console.log(error)
@@ -43,10 +45,12 @@ export default async (req,res ) => {
               const profile = await Profile.findByIdAndUpdate({_id: _id}, 
               {
               overheadPressVolume: volume,
+              dates: Date.now()
               }, 
               {
               new: true,
               runValidators: true,
+              upsert: true
               })
               console.log(profile)
             } catch (error) {
