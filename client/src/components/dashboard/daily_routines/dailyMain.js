@@ -177,9 +177,6 @@ export default function dailyMain({profile}) {
 
     const save = {
       ...profile,
-      totalDays: profile.totalDays,
-      currentDay: profile.currentDay,
-      currentWeek: profile.currentWeek,
       volume: volume
     }
     try {
