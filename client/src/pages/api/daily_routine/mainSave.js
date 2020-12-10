@@ -4,7 +4,7 @@ import Profile from '../../../models/Profile';
 db()
 
 export default async (req,res ) => {
-  const {_id, totalDays, currentDay, currentWeek, volume} = req.body
+  const {_id, totalDays, currentDay, currentWeek, volume, reps, weight} = req.body
 
   let newTotalDays = totalDays, newCurrentDay = currentDay, newCurrentWeek = currentWeek
 
@@ -20,11 +20,14 @@ export default async (req,res ) => {
       try {
         const profile = await Profile.findByIdAndUpdate({_id: _id}, 
         {
-         benchVolume: req.body.benchVolume + volume,
+         benchVolume: volume,
          totalDays: newTotalDays,
          currentDay: newCurrentDay,
          currentWeek: newCurrentWeek,
-         latestWorkout: Date.now()
+         latestWorkout: Date.now(),
+         latestMainLift: 'Bench',
+         latestReps: reps,
+         latestWeight: weight
         }, 
         {
         new: true,
@@ -39,11 +42,14 @@ export default async (req,res ) => {
         try {
           const profile = await Profile.findByIdAndUpdate({_id: _id}, 
           {
-          squatVolume: req.body.squatVolume + volume,
+          squatVolume: volume,
           totalDays: newTotalDays,
           currentDay: newCurrentDay,
           currentWeek: newCurrentWeek,
-          latestWorkout: Date.now()
+          latestWorkout: Date.now(),
+          latestMainLift: 'Squat',
+          latestReps: reps,
+          latestWeight: weight
           }, 
           {
           new: true,
@@ -62,7 +68,10 @@ export default async (req,res ) => {
           totalDays: newTotalDays,
           currentDay: newCurrentDay,
           currentWeek: newCurrentWeek,
-          latestWorkout: Date.now()
+          latestWorkout: Date.now(),
+          latestMainLift: 'Overhead Press',
+          latestReps: reps,
+          latestWeight: weight
           }, 
           {
           new: true,
@@ -81,7 +90,10 @@ export default async (req,res ) => {
           totalDays: newTotalDays,
           currentDay: newCurrentDay,
           currentWeek: newCurrentWeek,
-          latestWorkout: Date.now()
+          latestWorkout: Date.now(),
+          latestMainLift: 'Deadlift',
+          latestReps: reps,
+          latestWeight: weight
           }, 
           {
           new: true,

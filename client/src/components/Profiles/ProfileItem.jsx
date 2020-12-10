@@ -19,12 +19,12 @@ export default function ProfileItem({user}) {
               </ul>
             </div>
             <div>
-            <h1 className='text-3xl'>Latest Totals: </h1>
+            <h1 className='text-3xl'>Latest Workout: </h1>
               <ul className='p-2 mb-2'>
-                <li>Bench Volume: 2400 lbs</li>
-                <li>Squat Volume: 2400 lbs</li>
-                <li>OHP Volume: 2400 lbs</li>
-                <li>Deadlift Volume: 2400 lbs</li>
+                <li>Day: {user.profile.latestWorkout}</li>
+                <li>Main Lift: {user.profile.latestMainLift} - 225 x 10 </li>
+                <li>Secondary Lift: Bench - </li>
+                <li>Accessory: </li>
               </ul>
             </div>
             </div>

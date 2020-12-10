@@ -98,8 +98,7 @@ export default function dailySecondary({profile}) {
     if (checked5) volume += repSet5 * weight;
 
     const save = {
-      ...profile,
-      volume: volume
+      ...profile, volume, weight
     }
     try {
       const res = await fetch('http://localhost:3000/api/daily_routine/secondarySave',{

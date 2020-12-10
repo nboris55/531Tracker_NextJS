@@ -2,7 +2,7 @@ import { Fragment, useEffect } from 'react';
 import Router from 'next/router'
 import Navbar from '../../components/layout/Navbar';
 import ProfileItem from '../../components/Profiles/ProfileItem';
-import {Dashboard} from '../../components/layout/links'
+import { Dashboard } from '../../components/buttons/dashboardBtn'
 import { useAuth } from '../../context/auth';
 
 

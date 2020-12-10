@@ -4,7 +4,7 @@ import Profile from '../../../models/Profile';
 db()
 
 export default async (req,res ) => {
-  const {_id, program, currentDay, volume} = req.body
+  const {_id, program, currentDay, volume, weight} = req.body
 
   switch (program) {
     case 'A' :
@@ -13,13 +13,13 @@ export default async (req,res ) => {
           try {
             const profile = await Profile.findByIdAndUpdate({_id: _id}, 
             {
-             benchVolume: req.body.benchVolume + volume,
-             dates: Date.now()
+             benchVolume: volume,
+             latestSecondaryLift: 'Bench',
+             latestSecondaryWeight: weight
             }, 
             {
             new: true,
             runValidators: true,
-            upsert: true
             })
           } catch (error) {
             console.log(error)
@@ -29,7 +29,9 @@ export default async (req,res ) => {
             try {
               const profile = await Profile.findByIdAndUpdate({_id: _id}, 
               {
-              squatVolume: req.body.squatVolume + volume,
+              squatVolume: volume,
+              latestSecondaryLift: 'Squat',
+              latestSecondaryWeight: weight
               }, 
               {
               new: true,
@@ -45,7 +47,8 @@ export default async (req,res ) => {
               const profile = await Profile.findByIdAndUpdate({_id: _id}, 
               {
               overheadPressVolume: volume,
-              dates: Date.now()
+              latestSecondaryLift: 'Overhead Press',
+              latestSecondaryWeight: weight
               }, 
               {
               new: true,
@@ -62,6 +65,8 @@ export default async (req,res ) => {
               const profile = await Profile.findByIdAndUpdate({_id: _id}, 
               {
               deadliftVolume: volume,
+              latestSecondaryLift: 'Deadlift',
+              latestSecondaryWeight: weight
               }, 
               {
               new: true,
@@ -78,7 +83,9 @@ export default async (req,res ) => {
             try {
               const profile = await Profile.findByIdAndUpdate({_id: _id}, 
               {
-               overheadPressVolume: req.body.overheadPressVolume + volume,
+               overheadPressVolume: volume,
+               latestSecondaryLift: 'Overhead Press',
+               latestSecondaryWeight: weight
               }, 
               {
               new: true,
@@ -92,7 +99,9 @@ export default async (req,res ) => {
               try {
                 const profile = await Profile.findByIdAndUpdate({_id: _id}, 
                 {
-                deadliftVolume: req.body.deadliftVolume + volume,
+                deadliftVolume: volume,
+                latestSecondaryLift: 'Deadlift',
+                latestSecondaryWeight: weight
                 }, 
                 {
                 new: true,
@@ -106,7 +115,9 @@ export default async (req,res ) => {
               try {
                 const profile = await Profile.findByIdAndUpdate({_id: _id}, 
                 {
-                overheadPressVolume: volume,
+                benchVolume: volume,
+                latestSecondaryLift: 'Bench',
+                latestSecondaryWeight: weight
                 }, 
                 {
                 new: true,
@@ -120,7 +131,9 @@ export default async (req,res ) => {
               try {
                 const profile = await Profile.findByIdAndUpdate({_id: _id}, 
                 {
-                deadliftVolume: volume,
+                squatVolume: volume,
+                latestSecondaryLift: 'Squat',
+                latestSecondaryWeight: weight
                 }, 
                 {
                 new: true,

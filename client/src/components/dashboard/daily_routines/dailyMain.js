@@ -177,7 +177,9 @@ export default function dailyMain({profile}) {
 
     const save = {
       ...profile,
-      volume: volume
+      volume: volume,
+      reps: repSet3,
+      weight: weightSet3
     }
     try {
       const res = await fetch('http://localhost:3000/api/daily_routine/mainSave',{

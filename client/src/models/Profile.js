@@ -70,6 +70,24 @@ const ProfileSchema = new mongoose.Schema({
     latestWorkout: {
       type: Date,
       default: null
+    },
+    latestMainLift: {
+      type: String
+    },
+    latestSecondaryLift: {
+      type: String
+    },
+    latestAccessoryLift: {
+      type: String
+    },
+    latestReps: {
+      type: Number
+    },
+    latestWeight: {
+      type: Number
+    },
+    latestSecondaryWeight: {
+      type: Number
     }
   });
 
