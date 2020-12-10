@@ -3,7 +3,7 @@ import Navbar from '../components/layout/Navbar';
 import DailyMain from '../components/dashboard/daily_routines/dailyMain'
 import DailySecondary from '../components/dashboard/daily_routines/dailySecondary'
 import DailyAccessory from '../components/dashboard/daily_routines/dailyAccessory'
-import { Dashboard } from '../components/buttons/SaveBtns'
+import { Dashboard } from '../components/buttons/dashboardBtn'
 import { useAuth } from '../context/auth';
 import Router from 'next/router'
 

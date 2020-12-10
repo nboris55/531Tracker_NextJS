@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import Router from 'next/router'
 import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
-import { Dashboard } from '../components/layout/links'
+import { Dashboard } from '../components/buttons/dashboardBtn'
 import { useAuth } from '../context/auth';
 
 
