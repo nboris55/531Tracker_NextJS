@@ -2,28 +2,30 @@ import { Fragment, useState, useEffect } from 'react';
 import Chart from 'chart.js'
 import { Line } from 'react-chartjs-2'
 
-export default function progressChart() {
-  const [chartData, setChartData] = useState({})
 
-  const chart = () => {
+export default function progressChart({profile}) {
+  const [chartData, setChartData] = useState({})
+  let bench, squat, overheadPress, deadlift
+  if (profile) {
+    bench = profile.bench
+    squat = profile.squat
+    overheadPress = profile.overheadPress
+    deadlift = profile.deadlift
+
+  }
+  console.log(bench, squat)
+
+  const chart = (bench, squat, overheadPress, deadlift) => {
     setChartData({
-      labels: ['monday', 'tuesday', 'thursday', 'friday'],
+      labels: ['Bench', 'Squat', 'Overhead Press', 'Deadlift'],
       datasets: [
         {
           label: 'Primary Lifts',
-          data: [2710,9580,2000,1010],
+          data: [bench, squat, overheadPress, deadlift],
           borderColor: ['rgba(239,68,68)'],
           borderWidth:2,
           fill: false,
         },
-        {
-          label: 'Secondary Lifts',
-          data: [4000,5000,2000,6000],
-          borderColor: ['rgba(167,243,208)'],
-          pointBackgroundColor:['black'],
-          borderWidth:2,
-          fill: false,
-        }
       ]
     })
   }
@@ -36,7 +38,7 @@ export default function progressChart() {
   <Fragment>
     <Line data={chartData} options={{
       responsive: true,
-      title: {text: 'Weekly Lift Volume', display: true, fontColor:'white', fontSize: 22},
+      title: {text: 'Current One Rep Maxes', display: true, fontColor:'white', fontSize: 22},
       legend: {
         display: true,
         labels: {

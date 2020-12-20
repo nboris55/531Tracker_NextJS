@@ -170,6 +170,18 @@ export default function dailyMain({profile}) {
   async function onSubmit (e) {
     e.preventDefault();
     const {checked1, checked2, checked3} = checked
+    let reps, weight
+
+    if (checked1) {
+      reps = repSet1
+      weight = weightSet1
+    } else if (checked2) {
+      reps = repSet2
+      weight = weightSet2
+    } else if (checked3) {
+      reps = repSet3
+      weight = weightSet3
+    }
 
     if (checked1) volume = repSet1 * weightSet1;
     if (checked2) volume += repSet2 * weightSet2;
@@ -177,9 +189,7 @@ export default function dailyMain({profile}) {
 
     const save = {
       ...profile,
-      volume: volume,
-      reps: repSet3,
-      weight: weightSet3
+      volume: volume, reps, weight
     }
     try {
       const res = await fetch('http://localhost:3000/api/daily_routine/mainSave',{

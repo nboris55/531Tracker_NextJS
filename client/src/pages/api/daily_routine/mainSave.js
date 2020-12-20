@@ -27,7 +27,8 @@ export default async (req,res ) => {
          latestWorkout: Date.now(),
          latestMainLift: 'Bench',
          latestReps: reps,
-         latestWeight: weight
+         latestWeight: weight,
+         latestAccessoryLift: 'Lat Work'
         }, 
         {
         new: true,
@@ -49,7 +50,8 @@ export default async (req,res ) => {
           latestWorkout: Date.now(),
           latestMainLift: 'Squat',
           latestReps: reps,
-          latestWeight: weight
+          latestWeight: weight,
+          latestAccessoryLift: 'Abs'
           }, 
           {
           new: true,
@@ -71,7 +73,8 @@ export default async (req,res ) => {
           latestWorkout: Date.now(),
           latestMainLift: 'Overhead Press',
           latestReps: reps,
-          latestWeight: weight
+          latestWeight: weight,
+          latestAccessoryLift: 'Lat Work'
           }, 
           {
           new: true,
@@ -93,11 +96,13 @@ export default async (req,res ) => {
           latestWorkout: Date.now(),
           latestMainLift: 'Deadlift',
           latestReps: reps,
-          latestWeight: weight
+          latestWeight: weight,
+          latestAccessoryLift: 'Abs'
           }, 
           {
           new: true,
           runValidators: true,
+          upsert: true
           })
           console.log(profile)
         } catch (error) {

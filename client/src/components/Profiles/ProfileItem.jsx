@@ -3,6 +3,19 @@ import { Fragment } from 'react';
 
 export default function ProfileItem({user}) {
   console.log(user)
+  const {
+    bench,
+    squat,
+    overheadPress,
+    deadlift,
+    latestWorkout,
+    latestMainLift, 
+    latestSecondaryLift,
+    latestAccessoryLift,
+    latestReps, 
+    latestWeight,
+    latestSecondaryWeight
+  } = user.profile
   return (
      <Fragment>
       <div className='rounded-md border-2 mt-5 p-2'>
@@ -12,20 +25,21 @@ export default function ProfileItem({user}) {
             <div> 
               <h1 className='text-3xl'>Rep Maxs: </h1>
               <ul className='p-2 mb-2'>
-                <li>Bench: {user.profile.bench}</li>
-                <li>Squat: {user.profile.squat}</li>
-                <li>OHP: {user.profile.overheadPress}</li>
-                <li>Deadlift: {user.profile.deadlift}</li>
+                <li>Bench: {bench}</li>
+                <li>Squat: {squat}</li>
+                <li>OHP: {overheadPress}</li>
+                <li>Deadlift: {deadlift}</li>
               </ul>
             </div>
             <div>
             <h1 className='text-3xl'>Latest Workout: </h1>
-              <ul className='p-2 mb-2'>
-                <li>Day: {user.profile.latestWorkout}</li>
-                <li>Main Lift: {user.profile.latestMainLift} - 225 x 10 </li>
-                <li>Secondary Lift: Bench - </li>
-                <li>Accessory: </li>
-              </ul>
+            {latestWorkout ? ( <ul className='p-2 mb-2'>
+                <li>Day: {latestWorkout}</li>
+                <li>Main Lift: {latestMainLift} - {latestWeight} lbs x {latestReps} reps</li>
+                <li>Secondary Lift: {latestSecondaryLift} - {latestSecondaryWeight} lbs x 10 reps </li>
+                <li>Accessory: {latestAccessoryLift}</li>
+              </ul>) : ('Has not begun the swole journey')}
+             
             </div>
             </div>
             ) : (
