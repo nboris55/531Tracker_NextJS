@@ -2,13 +2,24 @@ import { Fragment, useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
+import useSWR from 'swr'
 
 function dashboard() {
- let loading = false, name = "test", profile = false,showTable=false;
+  const { data, error } = useSWR('http://localhost:3000/api/me');
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  const { profile} = data
+  const name = profile.name
+  const liftProfile = profile.profile
+  let showTable = false
+
+  if (liftProfile) showTable = true
 
   return (
-    <Fragment>
-      {loading ? ('Loading ...') : (<Fragment>  <Navbar />
+   <Fragment>
+      <Navbar />
       <div className='max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto text-center sm:text-left'>
         <div>
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>
@@ -44,13 +55,12 @@ function dashboard() {
           <div>
            <h1 className='text-3xl mt-10 mb-2'>Week at a glance</h1>
         </div>
-        <GlanceTable profile={profile}/>
+        <GlanceTable profile={liftProfile}/>
         </Fragment> }
         
       </div> 
-    </Fragment>)}
     </Fragment>
-  );
-}
+)}
+
 
 export default (dashboard)
