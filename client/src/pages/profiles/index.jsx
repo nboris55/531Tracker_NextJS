@@ -6,6 +6,7 @@ import { Dashboard } from '../../components/buttons/dashboardBtn'
 
 import db from '../../middleware/db';
 import User from '../../models/User';
+import useUser from '../../middleware/user'
 
 export async function getServerSideProps () {
   await db()
@@ -19,6 +20,11 @@ export async function getServerSideProps () {
 }
 
 export default function profiles({data}) {
+ const { signedIn, isError, isLoading } = useUser()
+
+ if (isError) return <div>failed to load</div>;
+ if (isLoading) return <div>loading...</div>;
+
  let person
 
  if (data) {
@@ -27,7 +33,7 @@ export default function profiles({data}) {
  
   return (
     <Fragment>
-      {!data ? ('Loading...') : (<Fragment> <Navbar/>
+      {!data ? ('Loading...') : (<Fragment> <Navbar signedIn={signedIn}/>
       <div className='max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto text-center sm:text-left'>
         <div>
           <h1 className='text-5xl md:text-6xl font-bold'>Meet the lifters</h1>

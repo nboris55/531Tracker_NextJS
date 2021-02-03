@@ -1,9 +1,8 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from '../components/layout/Navbar';
-import { useAuth } from '../context/auth';
 import { useRouter } from 'next/router'
 
 export default function register() {

@@ -1,14 +1,15 @@
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
-export default function Navbar() {
-
- let user = false
- let loggedIn = false
-
- if (user) loggedIn = true
-
+export default function Navbar({signedIn}) {
+  const router = useRouter()
+  function logout () {
+    Cookies.remove('auth')
+    router.replace('/')
+  }
   return (
     <nav className='flex items-center justify-between bg-gray-700 p-3 h-16 nav'>
       <div className='flex items-center flex-shrink-0 text-white'>
@@ -16,14 +17,14 @@ export default function Navbar() {
           <FontAwesomeIcon icon={faDumbbell} /> 531 TRACKER
         </span>
       </div>
-      {loggedIn ? <div className='space-x-3'>
+      {signedIn ? <div className='space-x-3'>
       <Link href='/profiles'>
           <a className='text-red-200 text-xl hover:text-white'>
             Profiles
           </a>
       </Link>
       <Link href='/'>
-        <button className='text-teal-200 text-xl hover:text-white cursor-pointer' onClick={logout}>
+        <button className='text-teal-200 text-xl hover:text-white cursor-pointer' onClick={logout} >
           Logout
         </button>
       </Link>

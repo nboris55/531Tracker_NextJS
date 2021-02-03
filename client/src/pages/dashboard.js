@@ -1,25 +1,25 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
-import useSWR from 'swr'
+import useUser from '../middleware/user'
 
 function dashboard() {
-  const { data, error } = useSWR('http://localhost:3000/api/me');
+  const { data, signedIn, isError } = useUser()
 
-  if (error) return <div>failed to load</div>;
+  if (isError) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
+  let showTable = false
   const { profile} = data
   const name = profile.name
   const liftProfile = profile.profile
-  let showTable = false
 
   if (liftProfile) showTable = true
 
   return (
    <Fragment>
-      <Navbar />
+      <Navbar signedIn={signedIn}/>
       <div className='max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto text-center sm:text-left'>
         <div>
           <h1 className='text-5xl md:text-6xl font-bold'>Dashboard</h1>

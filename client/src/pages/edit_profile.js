@@ -4,29 +4,27 @@ import Router from 'next/router'
 import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
 import { Dashboard } from '../components/buttons/dashboardBtn'
+import useUser from '../middleware/user'
 
 export default function editProfile() {
-  let loading = true, profile, id 
+  const { data, signedIn, isError } = useUser()
 
-  if (!loading) {
-    profile = user.profile
-    id = user._id
+  let profile, liftProfile, program, bench, squat,overheadPress, deadlift, id;
+
+  if (!isError && data) {
+    profile = data.profile
+    id = profile._id
+    liftProfile = profile.profile
+    if (liftProfile) {
+    program = liftProfile.program
+    bench = liftProfile.bench
+    squat = liftProfile.squat
+    overheadPress = liftProfile.overheadPress
+    deadlift = liftProfile.deadlift
+    }
   }
 
-  let program = ''
-  let bench = ''
-  let squat = ''
-  let overheadPress = ''
-  let deadlift = ''
 
-  if (profile) {
-    program = profile.program
-    bench = profile.bench
-    squat = profile.squat
-    overheadPress = profile.overheadPress
-    deadlift = profile.deadlift
-  }
-  
   const formik = useFormik({
     initialValues: {
       program,
@@ -69,8 +67,8 @@ export default function editProfile() {
   }
   
 return(
-  <Fragment>
-    {loading ? ('Loading...') : (<Fragment>  <Navbar/>
+<Fragment> 
+    <Navbar signedIn={signedIn}/>
     <div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-5xl mx-auto">
       <div>
         <h1 className='text-5xl sm:text-6xl font-bold mb-2 sm:mb-4 text-center sm:text-left'>Profile</h1>
@@ -172,8 +170,5 @@ return(
           </button>
         </form>  
         </div>
-      </Fragment>)}
       </Fragment>
-  
-      )
-}
+)}
