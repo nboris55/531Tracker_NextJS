@@ -3,8 +3,6 @@ import Router from 'next/router'
 import Navbar from '../../components/layout/Navbar';
 import ProfileItem from '../../components/Profiles/ProfileItem';
 import { Dashboard } from '../../components/buttons/dashboardBtn'
-import { useAuth } from '../../context/auth';
-
 
 import db from '../../middleware/db';
 import User from '../../models/User';
@@ -21,14 +19,6 @@ export async function getServerSideProps () {
 }
 
 export default function profiles({data}) {
- const { user, loading } = useAuth()
- // if logged in, redirect to the dashboard
- useEffect(() => {
-  if (!loading && !user) {
-    Router.replace("/");
-  }
-}, [user]);
-
  let person
 
  if (data) {

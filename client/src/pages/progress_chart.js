@@ -2,13 +2,9 @@ import { Fragment } from 'react';
 import Navbar from '../components/layout/Navbar';
 import ProgressChart from '../components/dashboard/charts/progress_chart'
 import { Dashboard } from '../components/buttons/dashboardBtn';
-import { useAuth } from '../context/auth';
-
 
 export default function progressChart() {
-  const { user, loading } = useAuth()
-  
-  let profile
+  let profile, loading = true
 
   if (!loading && user) {
     profile = user.profile

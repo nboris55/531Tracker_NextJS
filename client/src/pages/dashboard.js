@@ -2,27 +2,9 @@ import { Fragment, useEffect } from 'react';
 import Navbar from '../components/layout/Navbar';
 import GlanceTable from '../components/dashboard/Table';
 import Link from 'next/link'
-import { useAuth } from '../context/auth';
-import Router from 'next/router'
 
 function dashboard() {
-  const { user, loading } = useAuth()
- 
-   // if not logged in redirect to homepage
-   useEffect(() => {
-    if ( !user) {
-      Router.replace("/");
-    }
-  }, [user]);
-
-  let name, profile, showTable
-
-  if (!loading && user) {
-    name = user.name
-    profile = user.profile
-  }
-
-  if (profile) showTable = true
+ let loading = false, name = "test", profile = false,showTable=false;
 
   return (
     <Fragment>

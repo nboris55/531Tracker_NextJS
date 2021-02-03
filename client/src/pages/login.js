@@ -4,18 +4,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router'
 import Navbar from '../components/layout/Navbar';
-import { useAuth } from '../context/auth';
 
 export default function login() {
-  const {user} = useAuth()
   const router = useRouter();
-
-   // if logged in, redirect to the dashboard
-   useEffect(() => {
-    if ( user ) {
-      router.replace("/dashboard");
-    }
-  }, [user]);
 
   const formik = useFormik ({
     initialValues: {

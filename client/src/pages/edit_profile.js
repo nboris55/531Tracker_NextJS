@@ -1,23 +1,12 @@
-import { useEffect } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Router from 'next/router'
 import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
 import { Dashboard } from '../components/buttons/dashboardBtn'
-import { useAuth } from '../context/auth';
-
 
 export default function editProfile() {
-  const {user, loading} = useAuth()
-  // if logged in, redirect to the dashboard
-  useEffect(() => {
-    if (!loading && !user) {
-      Router.replace("/");
-    }
-  }, [user]);
-
-  let profile, id 
+  let loading = true, profile, id 
 
   if (!loading) {
     profile = user.profile

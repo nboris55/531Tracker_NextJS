@@ -4,11 +4,8 @@ import DailyMain from '../components/dashboard/daily_routines/dailyMain'
 import DailySecondary from '../components/dashboard/daily_routines/dailySecondary'
 import DailyAccessory from '../components/dashboard/daily_routines/dailyAccessory'
 import { Dashboard } from '../components/buttons/dashboardBtn'
-import { useAuth } from '../context/auth';
 
 export default function dailyRoutine() {
-  const { user, loading } = useAuth()
-  
   let profile
 
   if (!loading && user) {

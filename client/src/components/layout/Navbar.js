@@ -1,12 +1,10 @@
-import { Fragment, useEffect } from 'react';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useAuth } from '../../context/auth';
 
 export default function Navbar() {
-  const { user, logout } = useAuth()
 
+ let user = false
  let loggedIn = false
 
  if (user) loggedIn = true
