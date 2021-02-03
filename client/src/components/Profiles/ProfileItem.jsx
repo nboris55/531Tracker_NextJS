@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 
 export default function ProfileItem({user}) {
-  console.log(user)
   const {
     bench,
     squat,

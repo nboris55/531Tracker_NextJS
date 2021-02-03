@@ -5,12 +5,7 @@ import { Dashboard } from '../components/buttons/dashboardBtn';
 import useUser from '../middleware/user'
 
 export default function progressChart() {
-  const { data, signedIn, isError } = useUser()
-  let profile, loading = true
-
-  if (!loading && user) {
-    profile = user.profile
-  }
+  const {signedIn } = useUser()
 
   return (
     <Fragment>
@@ -20,7 +15,7 @@ export default function progressChart() {
            <h1 className='text-5xl sm:text-6xl font-bold mt-1 mb-2 sm:mb-4'>Progress Chart</h1>
         </div>
           <Dashboard />
-        <ProgressChart profile={profile}/>
+        <ProgressChart/>
       </div>
     </Fragment>
   );

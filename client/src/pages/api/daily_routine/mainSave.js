@@ -34,7 +34,6 @@ export default async (req,res ) => {
         new: true,
         runValidators: true,
         })
-        console.log(profile)
       } catch (error) {
         console.log(error)
       }
@@ -57,7 +56,6 @@ export default async (req,res ) => {
           new: true,
           runValidators: true,
           })
-          console.log(profile)
         } catch (error) {
           console.log(error)
         }
@@ -80,7 +78,6 @@ export default async (req,res ) => {
           new: true,
           runValidators: true,
           })
-          console.log(profile)
         } catch (error) {
           console.log(error)
         }
@@ -104,7 +101,6 @@ export default async (req,res ) => {
           runValidators: true,
           upsert: true
           })
-          console.log(profile)
         } catch (error) {
           console.log(error)
         }

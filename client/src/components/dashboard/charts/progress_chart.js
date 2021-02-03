@@ -1,21 +1,28 @@
 import { Fragment, useState, useEffect } from 'react';
 import Chart from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import useUser from '../../../middleware/user'
 
 
-export default function progressChart({profile}) {
+export default function progressChart() {
+  const { data, signedIn, isError } = useUser()
   const [chartData, setChartData] = useState({})
-  let bench, squat, overheadPress, deadlift
-  if (profile) {
-    bench = profile.bench
-    squat = profile.squat
-    overheadPress = profile.overheadPress
-    deadlift = profile.deadlift
 
+  let profile, liftProfile, program, bench, squat,overheadPress, deadlift, id;
+  if (!isError && data) {
+    profile = data.profile
+    id = profile._id
+    liftProfile = profile.profile
+    if (liftProfile) {
+    program = liftProfile.program
+    bench = liftProfile.bench
+    squat = liftProfile.squat
+    overheadPress = liftProfile.overheadPress
+    deadlift = liftProfile.deadlift
+    }
   }
-  console.log(bench, squat)
 
-  const chart = (bench, squat, overheadPress, deadlift) => {
+  const chart = () => {
     setChartData({
       labels: ['Bench', 'Squat', 'Overhead Press', 'Deadlift'],
       datasets: [
