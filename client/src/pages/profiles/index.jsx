@@ -1,36 +1,18 @@
-import { Fragment, useEffect } from 'react';
-import Router from 'next/router'
+import { Fragment } from 'react';
 import Navbar from '../../components/layout/Navbar';
 import ProfileItem from '../../components/Profiles/ProfileItem';
 import { Dashboard } from '../../components/buttons/dashboardBtn'
-
-import db from '../../middleware/db';
-import User from '../../models/User';
 import useUser from '../../middleware/user'
+import fetchUsers from '../../middleware/profileUsers'
 
-export async function getServerSideProps () {
-  await db()
- 
-  const users = await User.find().populate('profile')
-  const string = JSON.stringify(users)
-  const data = JSON.parse(string)
-  return {
-    props : {data}
-  }
-}
+export default function profiles() {
+const { data, isError, isLoading } = fetchUsers()
+const { signedIn } = useUser()
 
-export default function profiles({data}) {
- const { signedIn, isError, isLoading } = useUser()
-
- if (isError) return <div>failed to load</div>;
- if (isLoading) return <div>loading...</div>;
-
- let person
-
- if (data) {
-   person = data
- }
- 
+let person
+if (isError) return <div>failed to load</div>;
+if (isLoading) return <div>loading...</div>;
+if (data) person = data.data
   return (
     <Fragment>
       {!data ? ('Loading...') : (<Fragment> <Navbar signedIn={signedIn}/>

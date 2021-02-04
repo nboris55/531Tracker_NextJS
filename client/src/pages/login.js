@@ -97,9 +97,9 @@ export default function login() {
             >
               Sign In
             </button>
-            <a className='inline-block align-baseline font-bold text-sm' href='#'>
+            {/* <a className='inline-block align-baseline font-bold text-sm' href='#'>
               Forgot Password?
-            </a>
+            </a> */}
           </span>
         </form>
         <p className='my-1'>
