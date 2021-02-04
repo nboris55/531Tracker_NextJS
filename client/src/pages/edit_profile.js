@@ -5,6 +5,7 @@ import Navbar from '../components/layout/Navbar'
 import { Fragment } from 'react';
 import { Dashboard } from '../components/buttons/dashboardBtn'
 import useUser from '../middleware/user'
+const url = process.env.URL;
 
 export default function editProfile() {
   const { data, signedIn, isError } = useUser()
@@ -48,7 +49,7 @@ export default function editProfile() {
 
   async function submit(values) {
     try {
-      const res = await fetch('http://localhost:3000/api/profile',{
+      const res = await fetch(`${url}/api/profile`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

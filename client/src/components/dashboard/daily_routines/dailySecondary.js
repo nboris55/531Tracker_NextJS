@@ -3,6 +3,7 @@ import { faPlus, faMinus,faCaretDown,faCaretUp } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { calcSecondaryLift } from '../../../calculations/calculations';
 import { saveBtn as SaveBtn, disabledSaveBtn as DisabledSaveBtn } from '../../buttons/SaveBtns'
+const url = process.env.URL;
 
 export default function dailySecondary({profile}) {
   const [openLift, toggleLift] = useState(false);
@@ -101,7 +102,7 @@ export default function dailySecondary({profile}) {
       ...profile, volume, weight
     }
     try {
-      const res = await fetch('http://localhost:3000/api/daily_routine/secondarySave',{
+      const res = await fetch(`${url}/api/daily_routine/secondarySave`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

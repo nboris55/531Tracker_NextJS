@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Navbar from '../components/layout/Navbar';
 import { useRouter } from 'next/router'
+const url = process.env.URL;
 
 export default function register() {
   const router = useRouter()
@@ -28,7 +29,7 @@ export default function register() {
 
   async function submit(values) {
     try {
-      const res = await fetch('http://localhost:3000/api/register',{
+      const res = await fetch(`${url}/api/register`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router'
 import Navbar from '../components/layout/Navbar';
+const url = process.env.URL;
 
 export default function login() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function login() {
 
   async function submit(values) {
     try {
-      const res = await fetch('http://localhost:3000/api/login',{
+      const res = await fetch(`${url}/api/login`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

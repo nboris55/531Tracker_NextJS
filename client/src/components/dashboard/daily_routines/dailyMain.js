@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { faPlus, faMinus,faCaretDown,faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+const url = process.env.URL;
 
 import { saveBtn as SaveBtn, disabledSaveBtn as DisabledSaveBtn } from '../../buttons/SaveBtns'
 
@@ -192,7 +193,7 @@ export default function dailyMain({profile}) {
       volume: volume, reps, weight
     }
     try {
-      const res = await fetch('http://localhost:3000/api/daily_routine/mainSave',{
+      const res = await fetch(`${url}/api/daily_routine/mainSave`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
