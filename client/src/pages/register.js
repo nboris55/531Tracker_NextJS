@@ -38,7 +38,7 @@ export default function register() {
       })
       const user = await res.json()
       if (!user) {
-        console.log('User is not created')
+        console.log('User not created')
       } else {
         router.replace('/dashboard')
       }
