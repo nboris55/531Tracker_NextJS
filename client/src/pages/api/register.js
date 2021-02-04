@@ -8,14 +8,11 @@ db()
 
 export default async (req,res) => {
     const { name, email, password } = req.body
-    if (req.method === 'POST') { 
-        const user = await User.findOne({email});
+    const user = await User.findOne({email});
     if (user) {
         return res.status(400).json({success: false, message: 'User already exists!'})
-    } 
-
+    }
     const hashedPassword = await bcrypt.hash(password,12);
-
     const newUser = await User.create({
         name,
         email,
@@ -36,8 +33,4 @@ export default async (req,res) => {
     } else {
         res.status(400).json({success: false, message: 'Invalid email or password'}) 
     }
-} else {
-    res.status(400).json({success:false, message:'Only accepts POST requests'})
-}
-   
 }
