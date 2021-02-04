@@ -8,8 +8,7 @@ db()
 
 export default async (req,res) => {
     const { email, password } = req.body
-
-        const user = await User.findOne({email}).select('+password');
+    const user = await User.findOne({email}).select('+password');
     if (!user) {
         return res.status(400).json({success: false, message: 'Invalid email or password'})
     } 

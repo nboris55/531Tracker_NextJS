@@ -26,7 +26,7 @@ export default function login() {
   async function submit(values) {
     try {
       const res = await fetch(`${url}/api/login`,{
-        method: 'GET',
+        method: 'POST',
         headers: {
           "Content-Type": "application/json"
         },
