@@ -30,7 +30,6 @@ export default function ResetPassword() {
         },
         body: JSON.stringify(values)
       })
-      const user = await res.json()
       if (res.status == 200) {
         router.replace('/login')
       } else {
