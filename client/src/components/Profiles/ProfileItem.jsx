@@ -1,19 +1,31 @@
 import { Fragment } from 'react';
 
 export default function ProfileItem({user}) {
-  const {
-    bench,
-    squat,
-    overheadPress,
-    deadlift,
-    latestWorkout,
-    latestMainLift, 
-    latestSecondaryLift,
-    latestAccessoryLift,
-    latestReps, 
-    latestWeight,
-    latestSecondaryWeight
-  } = user.profile
+  let bench,
+  squat,
+  overheadPress,
+  deadlift,
+  latestWorkout,
+  latestMainLift, 
+  latestSecondaryLift,
+  latestAccessoryLift,
+  latestReps, 
+  latestWeight,
+  latestSecondaryWeight
+
+  if (user.profile) {
+    bench = user.profile.bench
+    squat = user.profile.squat
+    overheadPress = user.profile.overheadPress
+    deadlift = user.profile.deadlift
+    latestWorkout = user.profile.latestWorkout
+    latestMainLift = user.profile.latestMainLift
+    latestSecondaryLift = user.profile.latestSecondaryLift
+    latestAccessoryLift = user.profile.latestAccessoryLift
+    latestReps = user.profile.latestReps
+    latestWeight = user.profile.latestWeight
+    latestSecondaryWeight = user.profile.latestSecondaryWeight
+  }
   return (
      <Fragment>
       <div className='rounded-md border-2 mt-5 p-2'>
@@ -41,7 +53,7 @@ export default function ProfileItem({user}) {
             </div>
             </div>
             ) : (
-              <h4 className='text-center mt-3 mb-2'>{user.name} has not started his swole journey yet!</h4>
+              <h4 className='text-center mt-3 mb-2'>{user.name} has not started their swole journey yet!</h4>
             )}
       </div>
     </Fragment>
