@@ -99,7 +99,7 @@ export default function GlanceTable({profile}) {
    <table className='rounded overflow-hidden bg-red-500 mb-6 table-fixed w-full'>
     <thead>
        <tr> 
-         <th className='px-4 py-2'>Lift</th>
+         <th className='px-4 py-2'>W1</th>
          <th className='px-4 py-2'>65% x 5</th>
          <th className='px-4 py-2'>75% x 3</th>
          <th className='px-4 py-2'>85% x 1+</th>
@@ -135,7 +135,7 @@ export default function GlanceTable({profile}) {
    <table className='rounded overflow-hidden bg-red-500 mb-6 table-fixed w-full'>
     <thead>
        <tr> 
-         <th className='px-4 py-2'>Lift</th>
+         <th className='px-4 py-2'>W2</th>
          <th className='px-4 py-2'>70% x 5</th>
          <th className='px-4 py-2'>80% x 3</th>
          <th className='px-4 py-2'>90% x 1+</th>
@@ -171,7 +171,7 @@ export default function GlanceTable({profile}) {
    <table className='rounded overflow-hidden bg-red-500 mb-6 table-fixed w-full'>
     <thead>
        <tr> 
-         <th className='px-4 py-2'>Lift</th>
+         <th className='px-4 py-2'>W3</th>
          <th className='px-4 py-2'>75% x 5</th>
          <th className='px-4 py-2'>85% x 3</th>
          <th className='px-4 py-2'>95% x 1+</th>

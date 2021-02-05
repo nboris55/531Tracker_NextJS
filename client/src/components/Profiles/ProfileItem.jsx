@@ -53,7 +53,7 @@ export default function ProfileItem({user}) {
             </div>
             </div>
             ) : (
-              <h4 className='text-center mt-3 mb-2'>{user.name} has not started his swole journey yet!</h4>
+              <h4 className='text-center mt-3 mb-2'>{user.name} has no profile created.</h4>
             )}
       </div>
     </Fragment>
