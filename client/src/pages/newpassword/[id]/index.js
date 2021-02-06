@@ -1,22 +1,22 @@
 import { Fragment } from 'react';
-import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import Navbar from '../components/layout/Navbar';
+import Navbar from '../../../components/layout/Navbar';
 import { useRouter } from 'next/router'
+import crypto from 'crypto'
 const url = process.env.URL;
 
 export default function register() {
   const router = useRouter()
-
+  
   const formik = useFormik({
     initialValues: {
       password:'',
-      passwordConfirmation:''
+      passwordConfirmation:'',
     },
     validationSchema: Yup.object({
       password: Yup.string().min(6).max(20).required(),
-      passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('password confirmation is a required field')
+      passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('password confirmation is a required field'),
     }),
     onSubmit: values => {
       submit(values)
@@ -24,19 +24,25 @@ export default function register() {
   })
 
   async function submit(values) {
+    const { id } = router.query
+    const resetPasswordToken = crypto.createHash('sha512').update(id).digest('hex')
+    const save = {
+      ...values,
+      resetPasswordToken
+    }
     try {
-      const res = await fetch(`${url}/api/register`,{
-        method: 'POST',
+      const res = await fetch(`${url}/api/newpassword`,{
+        method: 'PUT',
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(values)
+        body: JSON.stringify(save)
       })
       const user = await res.json()
       if (!user) {
-        console.log('User not created')
+        console.log('Password has not been changed')
       } else {
-        router.replace('/dashboard')
+        router.replace('/login')
       }
   } catch (error) {
     console.log(error) 

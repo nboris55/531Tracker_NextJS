@@ -10,8 +10,9 @@ export default async (req,res ) => {
     console.log('No user with that email')
   }
   const resetToken = user.getResetPasswordToken()
+  await user.save({validateBeforeSave: false})
   // Create reset url
-  const resetUrl = `https://${req.headers.host}/api/newpassword/${resetToken}`
+  const resetUrl = `https://${req.headers.host}/newpassword/${resetToken}`
   const message = `You have asked to recieve this email because you (or someone else) has requested the reset of a password. 
   Please follow this link: \n\n ${resetUrl}`
   try {
@@ -20,6 +21,7 @@ export default async (req,res ) => {
       subject: 'Password reset token for 531 Tracker',
       message
     })
+    await user.save({validateBeforeSave: false})
     res.status(200).json({success: true, data: 'Email has been sent'})
   } catch (err) {
     console.log(err)

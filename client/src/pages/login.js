@@ -34,7 +34,7 @@ export default function login() {
       })
       const user = await res.json()
       if (res.status == 400) {
-        router.replace('/register')
+        console.log('Invalid Email or password')
       } else {
         router.replace('/dashboard')
       }

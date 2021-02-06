@@ -31,7 +31,7 @@ export default function ResetPassword() {
         body: JSON.stringify(values)
       })
       if (res.status == 200) {
-        router.replace('/login')
+        console.log('Email submitted')
       } else {
         console.log('Error submitting reset token')
       }
